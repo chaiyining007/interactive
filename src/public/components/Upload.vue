@@ -25,11 +25,13 @@ import getSuffixName from "libs/src/getSuffixName";
 import base64ToBlob from "libs/src/base64ToBlob";
 import dealImage from "libs/src/dealImage";
 import { Progress, Toast } from "mint-ui";
+import * as xml2json from "libs/src/XMLToJson";
 const IDLE = 0; //空闲状态
 const START = 1; //开始瞬间（回调之后被修改）
 const PROGRESS = 2; //上传中
 const SUCCESS = 3; //成功瞬间（回调之后被修改）
 const ERROR = 4; //失败瞬间（回调之后被修改）
+
 export default {
   name: "Upload",
   props: {
@@ -39,7 +41,7 @@ export default {
     },
     action: {
       type: String,
-      default: "//wsmall-aphrodite.oss-ap-southeast-1.aliyuncs.com"
+      default: "//interactive-family.oss-cn-beijing.aliyuncs.com"
     },
     is_pit: {
       type: Boolean,
@@ -75,10 +77,10 @@ export default {
       return new Promise(function(resolve, reject) {
         resolve({
           data: {
-            accessid: "",
-            policy: "",
-            signature: "",
-            dir: ""
+            // accessid: "gosMh90Xji8bufWm",
+            // policy: "",
+            // signature: "",
+            dir: "upload-files/"
           }
         });
       });
@@ -101,9 +103,9 @@ export default {
       }
       this.status = START;
       this.get_oss_config().then(({ data }) => {
-        this.oss_config.OSSAccessKeyId = data.accessid;
-        this.oss_config.policy = data.policy;
-        this.oss_config.Signature = data.signature;
+        // this.oss_config.OSSAccessKeyId = data.accessid;
+        // this.oss_config.policy = data.policy;
+        // this.oss_config.Signature = data.signature;
         // [文件目录]/上传时间戳_随机值.后缀
         this.oss_config.key = `${data.dir}${new Date().getTime()}_${~~(
           Math.random() * 99999
@@ -132,6 +134,9 @@ export default {
                 file: blob,
                 filename: this.file_key,
                 onSuccess: data => {
+                  console.log(xml2json.Create(data));
+                  
+                  return
                   this.status = SUCCESS;
                   this.location = data.Location = data.Location.replace(
                     "http://",
