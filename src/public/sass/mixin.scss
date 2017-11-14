@@ -1,0 +1,27 @@
+$color-line: #E5E5E5;
+@mixin wh($ops...) {
+    $length: length($ops);
+    $width: nth($ops, 1);
+    $height: nth($ops, 2);
+    $suffix: "" !default;
+    @if $length==3 {
+        $suffix: nth($ops, 3);
+    }
+    @if $length==2 or $suffix=="" or $suffix=="px" {
+        width: pxTorem($width);
+        height: pxTorem($height);
+    }
+    @else {
+        width: $width+$suffix;
+        height: $height+$suffix;
+    }
+}
+
+@mixin posabwh100 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include wh(100, 100, %);
+}
