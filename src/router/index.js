@@ -23,6 +23,7 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
+  window.app.is_foundation = true;
   document.title = titles[to.path];
   next();
 })

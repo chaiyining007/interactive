@@ -57,9 +57,14 @@ export default {
       type: Number,
       default: 1024
     },
+    default_url: {
+      type: String,
+      default: ""
+    },
     successCallback: Function,
     errorCallback: Function,
-    progressCallback: Function
+    progressCallback: Function,
+    other_data: [String, Number, Object]
   },
   data: function() {
     return {
@@ -68,7 +73,7 @@ export default {
       file_size: 0,
       progress_value: 0,
       oss_config: {},
-      location: "",
+      location: this.default_url,
       files: []
     };
   },
@@ -134,9 +139,6 @@ export default {
                 file: blob,
                 filename: this.file_key,
                 onSuccess: data => {
-                  console.log(xml2json.Create(data));
-                  
-                  return
                   this.status = SUCCESS;
                   this.location = data.Location = data.Location.replace(
                     "http://",
@@ -146,13 +148,13 @@ export default {
                   file_item_data.status = "success";
                   file_item_data.key = data.Key;
                   typeof this.successCallback === "function" &&
-                    this.successCallback(data, this.files);
+                    this.successCallback(data, this.files, this.other_data);
                   this.status = IDLE;
                 },
                 onError: (error, data) => {
                   file_item_data.status = "error";
                   typeof this.errorCallback === "function" &&
-                    this.errorCallback(data, this.files);
+                    this.errorCallback(data, this.files, this.other_data);
                   this.status = IDLE;
                 },
                 onProgress: e => {
@@ -161,7 +163,7 @@ export default {
                   file_item_data.progress_value = e.percent;
                   this.progress_value = e.percent;
                   typeof this.progressCallback === "function" &&
-                    this.progressCallback(e, this.files);
+                    this.progressCallback(e, this.files, this.other_data);
                 }
               });
             });
