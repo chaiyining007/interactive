@@ -44,7 +44,12 @@ export default {
     post() {
       ajax({
         url: "/task",
-        method: "post"
+        method: "post",
+        data: {
+          title: 'title',
+          details: 'details',
+          imgs: JSON.stringify(['xxx'])
+        }
       });
     }
   }
