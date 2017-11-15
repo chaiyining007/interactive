@@ -10,7 +10,7 @@
         </div>
       </mt-cell>
       <div class="btns">
-        <a href="#" class="submit">提交</a>
+        <a href="#" class="submit" @click.stop.prevent="post">提交</a>
         <a href="#" class="break" @click.stop.prevent="previous">返回</a>
       </div>
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import { Field, Cell } from "mint-ui";
+import ajax from "@/public/src/ajax";
 import Upload from "@/public/components/Upload";
 // Vue.component(Field.name, Field);
 export default {
@@ -41,7 +42,10 @@ export default {
       window.history.go(-1);
     },
     post() {
-      
+      ajax({
+        url: "/task",
+        method: "post"
+      });
     }
   }
 };

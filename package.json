@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "es6-symbol": "^3.1.1",
     "libs-js": "^1.0.6",
     "mint-ui": "^2.2.10",
