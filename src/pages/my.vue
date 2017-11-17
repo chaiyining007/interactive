@@ -27,23 +27,23 @@
         </div>
       </div>
       <div class="banner banner-body">
-        <div class="half half-font-center">
-          <span class="iconfont">&#xe64b;</span>
+        <div id='o-not-start' class="half half-font-center">
+          <span class="iconfont">&#xe628;</span>
           <br />
-          待开始
+          未开始
         </div>
-        <div class="half half-font-center">
-          <span class="iconfont">&#xe64b;</span>
+        <div id='o-underway' class="half half-font-center">
+          <span class="iconfont">&#xe625;</span>
           <br />
           进行中
         </div>
-        <div class="half half-font-center">
-          <span class="iconfont">&#xe64b;</span>
+        <div id='o-wait-check' class="half half-font-center">
+          <span class="iconfont">&#xe65c;</span>
           <br />
-          待验收
+          待确认
         </div>
-        <div class="half half-font-center">
-          <span class="iconfont">&#xe64b;</span>
+        <div id='o-finish' class="half half-font-center">
+          <span class="iconfont">&#xe619;</span>
           <br />
           已完成
         </div>
@@ -74,6 +74,13 @@ export default {
 }
 </script>
 <style lang="scss">
+#o-not-started, #o-underway, #o-wait-check, #o-finish {
+  line-height: .5rem;
+  span {
+    font-size: .6rem;
+    padding: .2rem 0;
+  }
+}
 #my-avatar {
   margin-top: .7rem;
 }
@@ -81,6 +88,7 @@ export default {
   position: absolute;
   top: 0.3rem;
   left: 0.3rem;
+  font-size: .35rem;
 }
 #login-or-regist {
   text-align: center;
@@ -102,8 +110,8 @@ export default {
     }
   }
   .banner-body .half {
-    padding-top: .6rem;
-    padding-bottom: .3rem;
+    padding-top: .5rem;
+    padding-bottom: .2rem;
   }
 }
 #my-setting {
