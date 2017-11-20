@@ -19,6 +19,16 @@ const router = new Router({
       path: '/my',
       name: 'my',
       component: resolve => require(["@/pages/my/my"], resolve)
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(["@/pages/my/login"], resolve)
+    },
+    {
+      path: '/reg',
+      name: 'login',
+      component: resolve => require(["@/pages/my/reg"], resolve)
     }
   ]
 })

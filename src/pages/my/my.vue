@@ -5,7 +5,9 @@
       <MyAvatar />
     </p>
     <div id="login-or-regist">
-      <Button size="small">登录 / 注册</Button>
+      <router-link class="to_login" to="/login">
+        登录 / 注册
+      </router-link>
     </div>
     <div class='banner'>
       <div class="half half-line half-font-center">
@@ -63,7 +65,6 @@
 <script>
 import MyAvatar from "@/components/myAvatar.vue";
 import { Button } from "mint-ui";
-console.log(Button);
 export default {
   name: "post",
   components: { MyAvatar, [Button.name]: name },
@@ -100,9 +101,14 @@ export default {
   #login-or-regist {
     text-align: center;
     padding: 0.4rem 0;
-    button {
+    .to_login {
       background-color: #13d1be;
       color: #fff;
+      line-height: 0.8rem;
+      font-size: 0.28rem;
+      display: block;
+      max-width: 2.4rem;
+      margin: 0 auto;
     }
   }
   #my-tasks {
