@@ -1,6 +1,6 @@
 <template>
   <div class="my-avatar">
-      <RoundImage :url="url" :alt="avatar" />
+      <RoundImage :url="url"/>
   </div>
 </template>
 <script>

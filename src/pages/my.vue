@@ -63,9 +63,10 @@
 <script>
 import MyAvatar from '@/components/myAvatar.vue';
 import { Button } from 'mint-ui';
+console.log(Button)
 export default {
   name: 'post',
-  components: { MyAvatar, Button },
+  components: { MyAvatar, [Button.name]:name },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -74,9 +75,9 @@ export default {
 }
 </script>
 <style lang="scss">
-#o-not-started, #o-underway, #o-wait-check, #o-finish {
+#o-not-start, #o-underway, #o-wait-check, #o-finish {
   line-height: .5rem;
-  span {
+  .iconfont {
     font-size: .6rem;
     padding: .2rem 0;
   }
