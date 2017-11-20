@@ -15,7 +15,7 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .my-avatar {
     text-align: center;
     height: 1.4rem;

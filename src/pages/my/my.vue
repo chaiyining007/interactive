@@ -61,101 +61,105 @@
 </template>
 
 <script>
-import MyAvatar from '@/components/myAvatar.vue';
-import { Button } from 'mint-ui';
-console.log(Button)
+import MyAvatar from "@/components/myAvatar.vue";
+import { Button } from "mint-ui";
+console.log(Button);
 export default {
-  name: 'post',
-  components: { MyAvatar, [Button.name]:name },
-  data () {
+  name: "post",
+  components: { MyAvatar, [Button.name]: name },
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+      msg: "Welcome to Your Vue.js App"
+    };
   }
-}
+};
 </script>
-<style lang="scss">
-#o-not-start, #o-underway, #o-wait-check, #o-finish {
-  line-height: .5rem;
-  .iconfont {
-    font-size: .6rem;
-    padding: .2rem 0;
-  }
-}
-#my-avatar {
-  margin-top: .7rem;
-}
-#edit-m {
-  position: absolute;
-  top: 0.3rem;
-  left: 0.3rem;
-  font-size: .35rem;
-}
-#login-or-regist {
-  text-align: center;
-  padding: .4rem 0;
-  button {
-    background-color: #13d1be;
-    color: #fff;
-  }
-}
-#my-tasks {
-  margin-top: .4rem;
-  .banner-title {
-    padding: .1rem;
-    div:first-child {
-      padding-left: .2rem;
-    }
-    div:last-child {
-      padding-right: .4rem;
-    }
-  }
-  .banner-body .half {
-    padding-top: .5rem;
-    padding-bottom: .2rem;
-  }
-}
-#my-setting {
-  padding: .1rem;
-  margin-top: .4rem;
-  .banner {
-    padding: .2rem;
-  }
-  div:first-child {
-    padding-left: .2rem;
-  }
-  div:last-child {
-    padding-right: .4rem;
-  }
-}
-.banner-title {
-  border-bottom: 1px solid #f0f0f0;
-}
-.banner {
-  background-color: #fff;
-  display: flex;
-  .half {
-    flex-grow: 1;
-    font-size: 0.26rem;
-    padding: .12rem 0;
-  }
-  .gray-f {
-    color: #aeaeae;
-  }
-  .half-font-center {
-    text-align: center;
-  }
-  .half-font-right {
-    text-align: right;
-  }
-  .half-font-left {
-    text-align: left;
-  }
-  .half-line {
-    border-right: 1px solid #f0f0f0;
-  }
-}
+<style lang="scss" scoped>
 .my {
   border-top: 1px solid #f0f0f0;
+  #o-not-start,
+  #o-underway,
+  #o-wait-check,
+  #o-finish {
+    line-height: 0.5rem;
+    color: #666;
+    .iconfont {
+      font-size: 0.6rem;
+      padding: 0.2rem 0;
+    }
+  }
+  #my-avatar {
+    margin-top: 0.7rem;
+  }
+  #edit-m {
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    font-size: 0.35rem;
+  }
+  #login-or-regist {
+    text-align: center;
+    padding: 0.4rem 0;
+    button {
+      background-color: #13d1be;
+      color: #fff;
+    }
+  }
+  #my-tasks {
+    margin-top: 0.4rem;
+    .banner-title {
+      padding: 0.1rem;
+      div:first-child {
+        padding-left: 0.2rem;
+      }
+      div:last-child {
+        padding-right: 0.4rem;
+      }
+    }
+    .banner-body .half {
+      padding-top: 0.5rem;
+      padding-bottom: 0.2rem;
+    }
+  }
+  #my-setting {
+    padding: 0.1rem;
+    margin-top: 0.4rem;
+    .banner {
+      padding: 0.2rem;
+    }
+    div:first-child {
+      padding-left: 0.2rem;
+    }
+    div:last-child {
+      padding-right: 0.4rem;
+    }
+  }
+  .banner-title {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .banner {
+    background-color: #fff;
+    display: flex;
+    .half {
+      flex-grow: 1;
+      font-size: 0.26rem;
+      padding: 0.12rem 0;
+    }
+    .gray-f {
+      color: #aeaeae;
+    }
+    .half-font-center {
+      text-align: center;
+    }
+    .half-font-right {
+      text-align: right;
+    }
+    .half-font-left {
+      text-align: left;
+    }
+    .half-line {
+      border-right: 1px solid #f0f0f0;
+    }
+  }
 }
 </style>
