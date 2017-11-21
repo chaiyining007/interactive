@@ -46,10 +46,12 @@ export default {
         url: "/task",
         method: "post",
         data: {
-          title: 'title',
-          details: 'details',
-          imgs: JSON.stringify(['xxx'])
+          title: "title",
+          details: "details",
+          imgs: JSON.stringify(["xxx"])
         }
+      }).then(() => {
+        const data = {};
       });
     }
   }

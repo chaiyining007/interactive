@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" :style="style">
       <router-link to="/" class="logo iconfont">&#xe60a;</router-link>
       <form class="login_form">
         <mt-field class="form_row" label="账号"></mt-field>
@@ -19,22 +19,24 @@ export default {
   name: "login",
   components: { [Field.name]: Field },
   data() {
-    console.log(this);
     this.$root.is_foundation = false;
-    return {};
+    return {
+      style: {
+        height: `${document.documentElement.clientHeight}px`
+      }
+    };
   }
 };
 </script>
 
-<style lang="scss">
-body {
-  background: #fff;
-}
+<style lang="scss" scoped>
 .login {
+  background: #fff;
   .logo {
     display: block;
     max-width: 3rem;
-    margin: 1rem auto;
+    margin: 0 auto;
+    padding: 1rem 0;
     font-size: 2rem;
     height: 2rem;
     line-height: 2rem;
@@ -62,11 +64,12 @@ body {
       color: #fff;
       text-align: center;
     }
-    .reset_password,.reg{
+    .reset_password,
+    .reg {
       padding: 0.2rem 0;
       display: inline-block;
     }
-    .reg{
+    .reg {
       float: right;
     }
   }
