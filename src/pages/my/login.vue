@@ -17,6 +17,10 @@
 import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import validator from "async-validator";
+import login_data from "@/public/src/login_data";
+if (login_data.is_login) {
+  window.document.location.replace("/");
+}
 export default {
   name: "login",
   components: { [Field.name]: Field },
@@ -62,9 +66,9 @@ export default {
           if (!data.biz_action) {
             Toast("登录成功，跳转中...");
             login_data.Auth_Token = data.data.authenticate_token;
-            // setTimeout(() => {
-            //   window.document.location.replace("/login");
-            // }, 3000);
+            setTimeout(() => {
+              window.document.location.replace("/");
+            }, 3000);
           } else {
             Toast(data.msg || "系统繁忙，请稍后再试！");
           }

@@ -17,6 +17,9 @@
 import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import login_data from "@/public/src/login_data";
+if (login_data.is_login) {
+  window.document.location.replace("/");
+}
 export default {
   name: "login",
   components: { [Field.name]: Field },
@@ -40,7 +43,7 @@ export default {
       ajax({
         url: "/user",
         method: "post",
-        data: data || this.postData
+        data: this.postData
       }).then(
         data => {
           if (!data.biz_action) {
@@ -59,8 +62,7 @@ export default {
       );
     },
     create() {
-      const postData = JSON.parse(JSON.stringify(this.postData));
-      postData.is_random = true;
+      this.postData.is_random = true;
       this.reg(postData);
     }
   }
