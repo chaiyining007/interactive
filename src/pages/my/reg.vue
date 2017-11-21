@@ -16,11 +16,15 @@
 <script>
 import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
+import login_data from "@/public/src/login_data";
 export default {
   name: "login",
   components: { [Field.name]: Field },
   data() {
     this.$root.is_foundation = false;
+    if (login_data.is_login) {
+      window.document.location.replace("/");
+    }
     return {
       style: {
         height: `${document.documentElement.clientHeight}px`
@@ -41,6 +45,7 @@ export default {
         data => {
           if (!data.biz_action) {
             Toast("注册成功");
+            login_data.Auth_Token = data.data.authenticate_token;
             setTimeout(() => {
               window.document.location.replace("/login");
             }, 3000);
