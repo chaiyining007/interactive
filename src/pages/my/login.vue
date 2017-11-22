@@ -63,7 +63,7 @@ export default {
         data: this.loginData
       }).then(
         data => {
-          if (!data.biz_action) {
+          if (data.success) {
             Toast("登录成功，跳转中...");
             login_data.Auth_Token = data.data.authenticate_token;
             setTimeout(() => {

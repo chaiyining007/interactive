@@ -13,7 +13,7 @@ export default {
   props: {
     is_foundation: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   components: { Foundation },

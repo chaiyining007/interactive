@@ -34,7 +34,8 @@ export default {
       },
       postData: {
         login: "",
-        password: ""
+        password: "",
+        is_random: false
       }
     };
   },
@@ -46,14 +47,14 @@ export default {
         data: this.postData
       }).then(
         data => {
-          if (!data.biz_action) {
-            Toast("注册成功");
+          if (data.success) {
+            Toast("注册成功，自动登录中...");
             login_data.Auth_Token = data.data.authenticate_token;
             setTimeout(() => {
-              window.document.location.replace("/login");
+              window.document.location.replace("/");
             }, 3000);
           } else {
-            Toast(data.msg || "系统繁忙，请稍后再试！");
+            Toast(data.error || "系统繁忙，请稍后再试！");
           }
         },
         e => {
@@ -63,7 +64,7 @@ export default {
     },
     create() {
       this.postData.is_random = true;
-      this.reg(postData);
+      this.reg(this.postData);
     }
   }
 };

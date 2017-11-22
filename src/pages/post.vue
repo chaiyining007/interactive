@@ -25,7 +25,6 @@ export default {
   name: "post",
   components: { [Field.name]: Field, [Cell.name]: Cell, Upload },
   data() {
-    this.$root.is_foundation = false;
     return {
       postData: {
         name: "",
@@ -42,14 +41,12 @@ export default {
       window.history.go(-1);
     },
     post() {
+      const postData = JSON.parse(JSON.stringify(this.postData));
+      postData.imgs = JSON.stringify(postData.imgs);
       ajax({
         url: "/task",
         method: "post",
-        data: {
-          title: "title",
-          details: "details",
-          imgs: JSON.stringify(["xxx"])
-        }
+        data: postData
       }).then(() => {
         const data = {};
       });
