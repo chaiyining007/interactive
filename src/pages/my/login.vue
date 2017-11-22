@@ -70,7 +70,7 @@ export default {
               window.document.location.replace("/");
             }, 3000);
           } else {
-            Toast(data.msg || "系统繁忙，请稍后再试！");
+            Toast(data.error || "系统繁忙，请稍后再试！");
           }
         },
         e => {
