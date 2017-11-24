@@ -2,8 +2,9 @@
   <div class="reg" :style="style">
       <router-link to="/" class="logo iconfont">&#xe60a;</router-link>
       <form class="reg_form">
-        <mt-field class="form_row" label="账号" v-model="postData.login"></mt-field>
-        <mt-field class="form_row" type="password" label="密码" v-model="postData.password"></mt-field>
+        <mt-field class="form_row" label="账号：" v-model="postData.login"></mt-field>
+        <mt-field class="form_row" type="password" label="密码：" v-model="postData.password"></mt-field>
+        <mt-field class="form_row" label="邀请码：" v-model="postData.invitation_code"></mt-field>
       </form>
       <div class="btns">
         <a href="#" class="reg_submit" @click.stop.prevent="reg">注册</a>
@@ -35,7 +36,8 @@ export default {
       postData: {
         login: "",
         password: "",
-        is_random: false
+        is_random: false,
+        invitation_code: ""
       }
     };
   },
