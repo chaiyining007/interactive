@@ -1,12 +1,14 @@
 <template>
   <div class="home">
-      q 
+      <Foundation></Foundation> 
   </div>
 </template>
 
 <script>
+import Foundation from "@/components/foundation";
 export default {
   name: 'HelloWorld',
+  components:{[Foundation.name]:Foundation},
   data () {
     this.$root.is_foundation = true;
     return {

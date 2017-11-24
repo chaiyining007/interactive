@@ -25,6 +25,7 @@ export default {
   name: "post",
   components: { [Field.name]: Field, [Cell.name]: Cell, Upload },
   data() {
+    // this.$root.is_foundation = false;
     return {
       postData: {
         name: "",

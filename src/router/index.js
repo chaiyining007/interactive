@@ -33,7 +33,6 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
-  window.app.is_foundation = false;
   document.title = titles[to.path];
   next();
 })

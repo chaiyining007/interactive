@@ -59,17 +59,18 @@
         </div>
       </div>
     </div>
+    <Foundation></Foundation>
   </div>
 </template>
 
 <script>
+import Foundation from "@/components/foundation";
 import MyAvatar from "@/components/myAvatar.vue";
 import { Button } from "mint-ui";
 export default {
   name: "post",
-  components: { MyAvatar, [Button.name]: name },
+  components: { MyAvatar, [Button.name]: name,[Foundation.name]:Foundation },
   data() {
-    this.$root.is_foundation = true;
     return {
       msg: "Welcome to Your Vue.js App"
     };
