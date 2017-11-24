@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-      <mt-field label="任务名" placeholder="任务的简单描述" v-model="postData.name"></mt-field>
+      <mt-field label="任务名" placeholder="任务的简单描述" v-model="postData.title"></mt-field>
       <mt-field label="任务描述" type="textarea" rows="4" v-model="postData.details"></mt-field>
       <mt-cell title="配图">
         <div class="upload_imgs">
@@ -10,25 +10,34 @@
         </div>
       </mt-cell>
       <div class="btns">
-        <a href="#" class="submit" @click.stop.prevent="post">提交</a>
+        <a href="#" class="submit" @click.stop.prevent="submit">提交</a>
         <a href="#" class="break" @click.stop.prevent="previous">返回</a>
       </div>
   </div>
 </template>
 
 <script>
-import { Field, Cell } from "mint-ui";
+import { Field, Cell, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import Upload from "@/public/components/Upload";
-// Vue.component(Field.name, Field);
+import validator from "async-validator";
 export default {
   name: "post",
   components: { [Field.name]: Field, [Cell.name]: Cell, Upload },
   data() {
-    // this.$root.is_foundation = false;
     return {
+      validator: new validator({
+        title: {
+          required: true,
+          message: "任务名不能为空！"
+        },
+        details: {
+          required: true,
+          message: "任务描述不能为空！"
+        }
+      }),
       postData: {
-        name: "",
+        title: "",
         details: "",
         imgs: []
       }
@@ -41,15 +50,32 @@ export default {
     previous() {
       window.history.go(-1);
     },
-    post() {
-      const postData = JSON.parse(JSON.stringify(this.postData));
-      postData.imgs = JSON.stringify(postData.imgs);
-      ajax({
-        url: "/task",
-        method: "post",
-        data: postData
-      }).then(() => {
-        const data = {};
+    submit() {
+      this.validator.validate(this.postData, { first: true }, errors => {
+        if (errors) {
+          Toast(errors[0].message);
+          return;
+        }
+        this.postData.imgs = JSON.stringify(this.postData.imgs);
+        ajax({
+          url: "/task",
+          method: "post",
+          data: this.postData
+        }).then(
+          data => {
+            if (data.success) {
+              Toast("发布成功！");
+              setTimeout(() => {
+                window.document.location.replace("/");
+              }, 3000);
+            } else {
+              Toast(data.error || "系统繁忙，请稍后再试！");
+            }
+          },
+          e => {
+            Toast("系统繁忙，请稍后再试！");
+          }
+        );
       });
     }
   }

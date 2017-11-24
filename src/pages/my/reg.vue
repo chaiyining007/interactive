@@ -18,6 +18,7 @@
 import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import login_data from "@/public/src/login_data";
+import validator from "async-validator";
 if (login_data.is_login) {
   window.document.location.replace("/");
 }
@@ -30,6 +31,16 @@ export default {
       window.document.location.replace("/");
     }
     return {
+      validator: new validator({
+        login: {
+          required: true,
+          message: "账号不能为空！"
+        },
+        password: {
+          required: true,
+          message: "密码不能为空！"
+        }
+      }),
       style: {
         height: `${document.documentElement.clientHeight}px`
       },
@@ -43,6 +54,15 @@ export default {
   },
   methods: {
     reg(data) {
+      this.validator.validate(this.postData, { first: true }, errors => {
+        if (errors) {
+          Toast(errors[0].message);
+          return;
+        }
+        this.reg_submit();
+      });
+    },
+    reg_submit() {
       ajax({
         url: "/user",
         method: "post",
@@ -66,7 +86,7 @@ export default {
     },
     create() {
       this.postData.is_random = true;
-      this.reg(this.postData);
+      this.reg_submit(this.postData);
     }
   }
 };
