@@ -20,14 +20,9 @@
       </div>
     </div>
     <div id="my-tasks">
-      <div class='banner banner-title'>
-        <div class='half half-font-left'>
-          我的任务
-        </div>
-        <div class="half gray-f half-font-right">
-          查看全部任务 >
-        </div>
-      </div>
+      <router-link class="row_link" to="/my/tasks">
+      我的任务<span class="remarks">查看全部任务</span>
+      </router-link>
       <div class="banner banner-body">
         <div id='o-not-start' class="half half-font-center">
           <span class="iconfont">&#xe628;</span>
@@ -69,7 +64,7 @@ import MyAvatar from "@/components/myAvatar.vue";
 import { Button } from "mint-ui";
 export default {
   name: "post",
-  components: { MyAvatar, [Button.name]: name,[Foundation.name]:Foundation },
+  components: { MyAvatar, [Button.name]: name, [Foundation.name]: Foundation },
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
@@ -79,7 +74,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .my {
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #f5f5f5;
   #o-not-start,
   #o-underway,
   #o-wait-check,
@@ -113,6 +108,18 @@ export default {
       margin: 0 auto;
     }
   }
+  .row_link{
+    font-size: 0.28rem;
+    padding: 0.2rem ;
+    display: block;
+    width: calc(100% - 0.2rem *2) ;
+    background: #fff;
+    border-bottom: 1px solid #f5f5f5;
+    .remarks{
+      color:#999;
+      float: right;
+    }
+  }
   #my-tasks {
     margin-top: 0.4rem;
     .banner-title {
@@ -143,7 +150,7 @@ export default {
     }
   }
   .banner-title {
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f5f5f5;
   }
   .banner {
     background-color: #fff;
@@ -166,7 +173,7 @@ export default {
       text-align: left;
     }
     .half-line {
-      border-right: 1px solid #f0f0f0;
+      border-right: 1px solid #f5f5f5;
     }
   }
 }

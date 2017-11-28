@@ -25,6 +25,7 @@ export default {
   components: { [Foundation.name]: Foundation },
   data() {
     this.$root.is_foundation = true;
+    
     return {
       loading: true,
       list: [],
@@ -38,7 +39,7 @@ export default {
     get_data() {
       this.loading = true;
       ajax({
-        url: "/tasks",
+        url: "/user/tasks",
         method: "get",
         params: this.page_data
       }).then(

@@ -14,7 +14,7 @@
     "axios": "^0.17.1",
     "babel-preset-es2015": "^6.24.1",
     "es6-symbol": "^3.1.1",
-    "libs-js": "^1.0.6",
+    "libs-js": "^1.0.9",
     "mint-ui": "^2.2.10",
     "node-sass": "^4.6.1",
     "sass-loader": "^6.0.6",

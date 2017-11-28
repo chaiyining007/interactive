@@ -8,7 +8,7 @@
       <div class="btns">
         <a href="#" class="login_submit" @click.stop.prevent="login">登录</a>
         <router-link to="/" class="reset_password">找回密码</router-link>
-        <router-link to="/reg" class="reg">注册</router-link>
+        <router-link :to="{path:'/reg',query:query}" class="reg">注册</router-link>
       </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import validator from "async-validator";
 import login_data from "@/public/src/login_data";
+import { encode, decode } from "libs/src/base64";
 if (login_data.is_login) {
   window.document.location.replace("/");
 }
@@ -27,6 +28,7 @@ export default {
   data() {
     this.$root.is_foundation = false;
     return {
+      query: this.$route.query,
       validator: new validator({
         login: {
           required: true,
@@ -67,6 +69,14 @@ export default {
             Toast("登录成功，跳转中...");
             login_data.Auth_Token = data.data.authenticate_token;
             setTimeout(() => {
+              if (
+                this.$route.query.error_code == 401 &&
+                this.$route.query.success_callback_url
+              ) {
+                window.document.location.replace(
+                  `${decode(this.$route.query.success_callback_url)}`
+                );
+              }
               window.document.location.replace("/");
             }, 3000);
           } else {

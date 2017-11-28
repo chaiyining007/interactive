@@ -29,7 +29,12 @@ const router = new Router({
       path: '/reg',
       name: 'reg',
       component: resolve => require(["@/pages/my/reg"], resolve)
-    }
+    },
+    {
+      path: '/my/tasks',
+      name: 'my_tasks',
+      component: resolve => require(["@/pages/my/tasks"], resolve)
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

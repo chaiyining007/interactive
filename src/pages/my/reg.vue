@@ -19,6 +19,7 @@ import { Field, Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import login_data from "@/public/src/login_data";
 import validator from "async-validator";
+import { encode, decode } from "libs/src/base64";
 if (login_data.is_login) {
   window.document.location.replace("/");
 }
@@ -73,6 +74,14 @@ export default {
             Toast("注册成功，自动登录中...");
             login_data.Auth_Token = data.data.authenticate_token;
             setTimeout(() => {
+              if (
+                this.$route.query.error_code == 401 &&
+                this.$route.query.success_callback_url
+              ) {
+                window.document.location.replace(
+                  `${decode(this.$route.query.success_callback_url)}`
+                );
+              }
               window.document.location.replace("/");
             }, 3000);
           } else {

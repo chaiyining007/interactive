@@ -3,5 +3,6 @@ export default {
     "/post": "发布任务",
     "/my": "我",
     "/login": "登录",
-    "/reg": "注册"
+    "/reg": "注册",
+    "/my/tasks": "我的任务",
 }

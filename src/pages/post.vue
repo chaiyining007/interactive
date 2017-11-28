@@ -58,7 +58,7 @@ export default {
         }
         this.postData.imgs = JSON.stringify(this.postData.imgs);
         ajax({
-          url: "/task",
+          url: "/tasks",
           method: "post",
           data: this.postData
         }).then(
