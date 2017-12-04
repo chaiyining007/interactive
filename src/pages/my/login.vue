@@ -76,6 +76,7 @@ export default {
                 window.document.location.replace(
                   `${decode(this.$route.query.success_callback_url)}`
                 );
+                return
               }
               window.document.location.replace("/");
             }, 3000);

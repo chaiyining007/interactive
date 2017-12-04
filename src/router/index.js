@@ -35,6 +35,11 @@ const router = new Router({
       name: 'my_tasks',
       component: resolve => require(["@/pages/my/tasks"], resolve)
     },
+    {
+      path: '/task/:id',
+      name: 'task_detail',
+      component: resolve => require(["@/pages/task/detail"], resolve)
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

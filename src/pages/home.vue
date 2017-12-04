@@ -3,8 +3,11 @@
       <div class="task_main">
         <ul class="task_list">
           <li class="task_item" v-for="item in list" :key="item.id">
-            <router-link class="task_link" to="/">
-              <span class="task_title">{{item.title}}</span>
+            <router-link class="task_link" :to="'/task/'+item.id">
+              <span class="task_title">
+                {{item.title}}
+                <span class="task_status">{{item.status_cn}}</span>
+              </span>
               <span class="task_details" v-html="item.details"></span>
             </router-link>
           </li>
@@ -21,7 +24,7 @@ import { Toast } from "mint-ui";
 import ajax from "@/public/src/ajax";
 import invisible_ascii_to_html from "libs/src/invisibleAsciiToHtml";
 export default {
-  name: "HelloWorld",
+  name: "home",
   components: { [Foundation.name]: Foundation },
   data() {
     this.$root.is_foundation = true;
@@ -92,9 +95,28 @@ export default {
       .task_details {
         display: block;
         padding: 0.2rem;
+        position: relative;
       }
       .task_title {
         border-bottom: 1px solid #e5e5e5;
+        padding-right: 1.4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .task_details {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 0.46rem;
+        height: calc(0.46rem * 4);
+        padding-bottom: 0;
+      }
+      .task_status {
+        color: #999;
+        position: absolute;
+        right: 0.2rem;
       }
     }
   }

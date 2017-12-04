@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <div class="task_main">
-        <ul class="task_list">
+        <ul v-if="list&&list.length" class="task_list">
           <li class="task_item" v-for="item in list" :key="item.id">
             <router-link class="task_link" to="/">
               <span class="task_title">{{item.title}}</span>
@@ -9,6 +9,7 @@
             </router-link>
           </li>
         </ul>
+        <p v-else class="no_data">暂无数据</p>
         <p class="loading" v-if="loading">加载中...</p>
       </div>
       <Foundation></Foundation> 
@@ -25,7 +26,6 @@ export default {
   components: { [Foundation.name]: Foundation },
   data() {
     this.$root.is_foundation = true;
-    
     return {
       loading: true,
       list: [],
@@ -72,7 +72,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .home {
-  .loading {
+  .loading,.no_data {
     text-align: center;
     font-size: 0.28rem;
     line-height: 0.28rem;
