@@ -26,9 +26,14 @@
             </div> 
         </div>
         <div class="btns">
-            <a href="#" v-if="!task_data.is_run" class="submit" @click.stop.prevent="receive">领取</a>
-            <a href="#" v-if="task_data.is_run" class="submit" @click.stop.prevent="receive">完成</a>
-            <a href="#" class="break" @click.stop.prevent="previous">返回</a>
+            <template v-if="!task_data.is_run">
+              <a href="#" class="submit" @click.stop.prevent="receive">领取</a>
+              <a href="#" class="break" @click.stop.prevent="previous">返回</a>
+            </template>
+            <template v-else>
+              <a href="#" class="submit" @click.stop.prevent="carry_out">完成</a>
+              <a href="#" class="give_up" @click.stop.prevent="give_up">放弃</a>
+            </template>
         </div>
         <p class="loading" v-if="loading">加载中...</p>
     </div>
@@ -54,7 +59,7 @@ export default {
         create_user_data: {},
         imgs: [],
         run_users: [],
-        is_run:false
+        is_run: false
       }
     };
   },
@@ -71,8 +76,25 @@ export default {
           if (data.success) {
             Toast("领取成功！");
             setTimeout(() => {
-              //   window.document.location.replace("/");
+              window.document.location.reload();
             }, 3000);
+          } else {
+            Toast(data.error || "系统繁忙，请稍后再试！");
+          }
+        },
+        e => {
+          Toast("系统繁忙，请稍后再试！");
+        }
+      );
+    },
+    carry_out() {
+      ajax({
+        url: `/tasks/${this.id}/carry_out`,
+        method: "get"
+      }).then(
+        data => {
+          if (data.success) {
+            // window.document.location.reload();
           } else {
             Toast(data.error || "系统繁忙，请稍后再试！");
           }
@@ -205,7 +227,7 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width:1rem ;
+      max-width: 1rem;
     }
   }
   .btns {
